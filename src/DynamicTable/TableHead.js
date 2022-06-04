@@ -2,7 +2,7 @@
 const TableHeadItem = ({ item, handleSort, isAscending, showArrow }) => {
     return (
         <td title={item} onClick={handleSort}>
-            {item}{showArrow && < img src={isAscending ? require('../icons/up.png') : require('../icons/down.png')} alt='ascending' />}
+            {item}{showArrow && < img src={isAscending ? require('../icons/down.png') : require('../icons/up.png')} alt='ascending' />}
         </td>
     );
 };

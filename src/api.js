@@ -6,7 +6,7 @@ const options = {
     }
 };
 
-const removePeriodAndZeroes = (num) => num.replace('.', '')
+const removePeriodAndZeroes = (num) => num.replace('.', '').replace(',', '')
 
 export const callAPI = async (url) => {
     try {
@@ -23,7 +23,7 @@ export const callAPI = async (url) => {
 }
 
 export const getAPIData = (pageNum) => {
-
+    console.log({ pageNum })
     switch (pageNum) {
         case 1:
             return callAPI('recentlyadded')

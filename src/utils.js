@@ -1,0 +1,2 @@
+export const sortAsec = (data) => data.sort((a, b) => a?.items[0].toLowerCase().localeCompare(b?.items[0].toLowerCase()));
+export const sortDesc = (data) => data.sort((a, b) => b?.items[0].toLowerCase().localeCompare(a?.items[0].toLowerCase()));

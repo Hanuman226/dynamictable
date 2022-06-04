@@ -3,6 +3,12 @@
    margin:20px 0;
 }
 
+.title{
+  text-align: center;
+  font-weight: bolder;
+  margin-bottom: 20px;
+}
+
 @media only screen and (max-width:600px){
     .table-wrapper{
         width: 90vw;

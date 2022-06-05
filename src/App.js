@@ -14,9 +14,16 @@ function App() {
   const [pageNum, setPageNum] = useState(1);
   const [isAscending, setIsAscending] = useState(false)
   const tableDataRef = useRef([]);
+  const [notFound, setNotFound] = useState(false)
 
   useEffect(() => {
     let temp = tableDataRef.current?.filter(({ items }) => validateData(items.join('')).indexOf(validateData(keyword)) > -1);
+    if (temp.length === 0 && tableDataRef.current.length !== 0) {
+      setNotFound(true)
+    }
+    else {
+      setNotFound(false)
+    }
     setBodyData(temp)
   }, [keyword])
 
@@ -59,6 +66,7 @@ function App() {
         <Pagination pageNum={pageNum} handleNext={handleNext} handlePrev={handlePrev} />
       </div>
       {tableDataRef.current.length === 0 ? <p className='title'>Loading...</p> : <Table theadData={theadData} tbodyData={bodyData} handleSorting={handleSorting} isAscending={isAscending} />}
+      {notFound && <p className='error'> {keyword} is not found, please try again with some other keyword !!</p>}
     </div>
   );
 }

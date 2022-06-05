@@ -37,12 +37,16 @@ function App() {
     setBodyData(sortedData)
   }
 
+  const resetSearch = () => { setKeyword('') }
+
   const handlePrev = async () => {
     setPageNum(prev => prev - 1)
+    resetSearch();
   }
 
   const handleNext = async () => {
     setPageNum(prev => prev + 1)
+    resetSearch();
   }
 
 
@@ -54,7 +58,7 @@ function App() {
         <input type="search" className='search-box' value={keyword} onChange={e => setKeyword(e.target.value)} placeholder="Search..." title="Type in a name" />
         <Pagination pageNum={pageNum} handleNext={handleNext} handlePrev={handlePrev} />
       </div>
-      {bodyData.length === 0 ? <p className='title'>Loading...</p> : <Table theadData={theadData} tbodyData={bodyData} handleSorting={handleSorting} isAscending={isAscending} />}
+      {tableDataRef.current.length === 0 ? <p className='title'>Loading...</p> : <Table theadData={theadData} tbodyData={bodyData} handleSorting={handleSorting} isAscending={isAscending} />}
     </div>
   );
 }

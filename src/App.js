@@ -4,7 +4,7 @@ import Table from './DynamicTable/Table';
 import './api'
 import { getAPIData } from './api';
 import { Pagination } from './components/Pagination';
-import { sortAsec, sortDesc } from './utils';
+import { sortAsec, sortDesc, validateData } from './utils';
 
 const theadData = ["Name", "Price", "Percent"];
 
@@ -16,7 +16,7 @@ function App() {
   const tableDataRef = useRef([]);
 
   useEffect(() => {
-    let temp = tableDataRef.current?.filter(item => item.items.join('').toLowerCase().indexOf(keyword.trim().toLowerCase()) > -1)
+    let temp = tableDataRef.current?.filter(({ items }) => validateData(items.join('')).indexOf(validateData(keyword)) > -1);
     setBodyData(temp)
   }, [keyword])
 

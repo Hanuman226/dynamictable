@@ -1,7 +1,7 @@
 import TableRow from "./TableRow";
 import TableHeadItem from "./TableHead";
 import './table.module.css'
-import { ProgressBar } from "../components/ProgressBar";
+
 const Table = ({ theadData, tbodyData, customClass, isAscending, handleSorting }) => {
     return (
         <table className={customClass}>

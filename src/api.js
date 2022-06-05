@@ -1,3 +1,5 @@
+import { sanitizeData } from "./utils";
+
 const options = {
     method: 'GET',
     headers: {
@@ -6,14 +8,12 @@ const options = {
     }
 };
 
-const removePeriodAndZeroes = (num) => num.replace('.', '').replace(',', '')
 
 export const callAPI = async (url) => {
     try {
         const data = await fetch(`https://crypto-tracker.p.rapidapi.com/api/${url}`, options)
         let response = await data.json()
-        let res = response?.result.map(({ name, onedaychange, price }, index) => ({ id: index, items: Object.values({ name, price: removePeriodAndZeroes(price), percent: removePeriodAndZeroes(onedaychange) }) }))
-        console.log(res);
+        let res = response?.result.map(({ name, onedaychange, price }, index) => ({ id: index, items: Object.values({ name, price: sanitizeData(price), percent: sanitizeData(onedaychange) }) }))
         return res;
     }
 
@@ -23,7 +23,6 @@ export const callAPI = async (url) => {
 }
 
 export const getAPIData = (pageNum) => {
-    console.log({ pageNum })
     switch (pageNum) {
         case 1:
             return callAPI('recentlyadded')
@@ -41,4 +40,3 @@ export const getAPIData = (pageNum) => {
     }
 }
 
-// console.log(getAPIData(3))

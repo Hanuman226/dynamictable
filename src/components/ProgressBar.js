@@ -14,7 +14,7 @@ export const ProgressBar = ({ percent = ' 50% ' }) => {
 export const Currency = ({ value = 700 }) => {
 
     return <div className='currency'>
-        <progress min="0" max="1000" value={value.replace('$', '')} />
+        <progress min="0" max="10000" value={value.replace('$', '')} />
         <div>{value}</div>
     </div>
 

@@ -13,11 +13,8 @@ const removeLeadingZeroes = price => '$' + parseInt(price.split('$')[1], 10)
 const fixedTwoDigits = percent => parseInt(percent.split('%')[0], 10) + '%'
 
 const reShapeData = (data) => {
-    console.log({ data })
     let reshapedData = data.map(({ name, onedaychange, price }, index) => (
         { id: index, items: Object.values({ name, price: removeLeadingZeroes(sanitizeData(price)), percent: fixedTwoDigits(onedaychange) }) }))
-
-    console.log({ reshapedData })
     return reshapedData
 }
 

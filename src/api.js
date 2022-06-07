@@ -9,11 +9,24 @@ const options = {
 };
 
 
+const removeLeadingZeroes = price => '$' + parseInt(price.split('$')[1], 10)
+const fixedTwoDigits = percent => parseInt(percent.split('%')[0], 10) + '%'
+
+const reShapeData = (data) => {
+    console.log({ data })
+    let reshapedData = data.map(({ name, onedaychange, price }, index) => (
+        { id: index, items: Object.values({ name, price: removeLeadingZeroes(sanitizeData(price)), percent: fixedTwoDigits(onedaychange) }) }))
+
+    console.log({ reshapedData })
+    return reshapedData
+}
+
+
 export const callAPI = async (url) => {
     try {
         const data = await fetch(`https://crypto-tracker.p.rapidapi.com/api/${url}`, options)
         let response = await data.json()
-        let res = response?.result.map(({ name, onedaychange, price }, index) => ({ id: index, items: Object.values({ name, price: sanitizeData(price), percent: sanitizeData(onedaychange) }) }))
+        let res = reShapeData(response?.result)
         return res;
     }
 

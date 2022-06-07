@@ -6,7 +6,7 @@ import { getAPIData } from './api';
 import { Pagination } from './components/Pagination';
 import { getLocalStorage, saveToLocalStorage, sortAsec, sortDesc, validateData } from './utils';
 
-const theadData = ["Name", "Price", "Percent"];
+const theadData = ["Name", "Price", "Fall in price"];
 
 const localStorageData = getLocalStorage('tableData')
 
